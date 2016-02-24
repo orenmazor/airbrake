@@ -15,8 +15,9 @@ module Airbrake
 
       ##
       # @param [Hash{String=>Object}] rack_env The Rack environment
-      def initialize(rack_env)
+      def initialize(rack_env, notifier_name)
         @rack_env = rack_env
+        @notifier_name = notifier_name
         @request = ::Rack::Request.new(rack_env)
         @controller = rack_env['action_controller.instance']
         @session = @request.session
@@ -38,7 +39,7 @@ module Airbrake
       # @param [Exception] exception
       # @return [Airbrake::Notice] the notice with extra information
       def build_notice(exception)
-        notice = Airbrake.build_notice(exception)
+        notice = Airbrake.build_notice(exception, {}, @notifier_name)
 
         add_context(notice)
         add_session(notice)

@@ -10,6 +10,7 @@ require 'airbrake/version'
 if defined?(Rack)
   require 'airbrake/rack/user'
   require 'airbrake/rack/notice_builder'
+  require 'airbrake/rack/middleware_builder'
   require 'airbrake/rack/middleware'
 
   require 'airbrake/rails/railtie' if defined?(Rails)
