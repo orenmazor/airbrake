@@ -1,3 +1,5 @@
+require 'resque/failure/base'
+
 module Resque
   module Failure
     ##
